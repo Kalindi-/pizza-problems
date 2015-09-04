@@ -1,0 +1,25 @@
+{
+  "name": "project4",
+  "version": "1.0.0",
+  "description": "Click on the pizza.html to open the page. Scroll up an down to see the pizzas dance! Click on the slide to decrease the pizzas to purchase!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kalindi-/pizza-problems.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kalindi-/pizza-problems/issues"
+  },
+  "homepage": "https://github.com/Kalindi-/pizza-problems#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-imagemin": "^0.9.4",
+    "grunt-image-resize": "^1.0.0",
+    "grunt-responsive-images": "^0.1.6"
+  }
+}
