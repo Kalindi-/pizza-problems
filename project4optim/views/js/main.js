@@ -424,8 +424,8 @@ var resizePizzas = function(size) {
   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldwidth = elem.offsetWidth;
-    var windowwidth = document.getElementById("randomPizzas").offsetWidth;
-    var oldsize = oldwidth / windowwidth;
+    var windowWidth = document.getElementById("randomPizzas").offsetWidth;
+    var oldsize = oldwidth / windowWidth;
 
     // TODO: change to 3 sizes? no more xl? (haha someone did this already, long before I got to this code: ) )
     // Changes the slider value to a percent width
@@ -443,7 +443,7 @@ var resizePizzas = function(size) {
     }
 
     var newsize = sizeSwitcher(size);
-    var dx = (newsize - oldsize) * windowwidth;
+    var dx = (newsize - oldsize) * windowWidth;
 
     return dx;
   }
@@ -452,10 +452,10 @@ var resizePizzas = function(size) {
   function changePizzaSizes(size) {
     var pizza0 = document.getElementById("pizza0")
     var dx = determineDx(pizza0, size);
-    var newwidth = (pizza0.offsetWidth + dx) + 'px';
+    var newWidth = (pizza0.offsetWidth + dx) + 'px';
     var allpizzas = document.getElementsByClassName("randomPizzaContainer")
     for (var i = 0; i < allpizzas.length; i++) {
-      allpizzas[i].style.width = newwidth;
+      document.getElementsByClassName("randomPizzaContainer")[i].style.width = newWidth;
     }
 
   }
@@ -506,10 +506,23 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
   var items = document.getElementsByClassName('mover');
   var scrollTopVar = document.body.scrollTop
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((scrollTopVar / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+
+  var phase = [];
+
+  for (var i = 0; i < 5; i++) {
+      phase.push(Math.sin(scrollTopVar/1250 + i) * 100);
   }
+
+  for (var i = 0, max = items.length; i < max; i++) {
+      items[i].style.left = items[i].basicLeft + phase[i%5] + 'px';
+  }
+
+  // To me the proposed option does not offer much speed increase.
+
+  // for (var i = 0; i < items.length; i++) {
+  //   var phase = Math.sin((scrollTopVar / 1250) + (i % 5));
+  //   items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  // }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -526,17 +539,21 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
+  var cols = 6;
+  var height = 256;
+
+  var numberPizzas = window.innerHeight/200 * 6;
+  var pizzaSpace = window.innerWidth / 5
   var movingPizzasDiv = document.getElementById("movingPizzas1")
-  for (var i = 0; i < 32; i++) {
+
+  for (var i = 0; i < numberPizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    elem.basicLeft = (i % cols) * pizzaSpace;
+    elem.style.top = (Math.floor(i / cols) * height) + 'px';
     movingPizzasDiv.appendChild(elem);
   }
   updatePositions();
