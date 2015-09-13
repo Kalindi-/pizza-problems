@@ -468,15 +468,13 @@ function logAverageFrame(times) {
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
-// The code for sliding background pizzas was pulled from Ilya's demo found at:
-// https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
 var items = document.getElementsByClassName('mover');
 function updatePositions() {
-  var scrolled = document.body.scrollTop / 1250;
-  frame++;
   window.performance.mark("mark_start_frame");
+  frame++;
+  var scrolled = document.body.scrollTop / 1250;
 
   var phase = [];
   for (var i = 0; i < 5; i++) {
@@ -490,8 +488,7 @@ function updatePositions() {
     }
   });
 
-  // User Timing API to the rescue again. Seriously, it's worth learning.
-  // Super easy to create custom metrics.
+  // User Timing API to the rescue again. Worth learning.
   window.performance.mark("mark_end_frame");
   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
   if (frame % 10 === 0) {
