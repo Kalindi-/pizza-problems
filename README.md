@@ -1,16 +1,14 @@
 
-Here is where I am tunneling to: http://db2489cf.ngrok.io/project4optim/
-(Do i need to provide this?)
-
-____
-
-
 # How to run the pizza.html appllication
 
 Click on the pizza.html to open the page.
 Scroll up an down to see the pizzas dance!
 Click on the slide to decrease the pizzas to purchase!
 
+---
+
+### source code:
+https://github.com/Kalindi-/pizza-problems-source
 
 ------
 
@@ -56,16 +54,19 @@ so thats cool i guess : )
 
 haha back on my internet connection score of 49 and 54 : )
 
+----
 
-TODO
-get grunt working
+GRUNT - then i decided to try to tackle grunt again and so I made another folder, where i used the source code to try a few things. I was a bit succesful and a bit not. Did not manage 'watch' nor 'sass', but managed some 'concat', 'processhtml', 'uglify' and some img stuff. For this submission, I decided to use some img grunt optimisations, and maybe next time more. So I redid the setup in project4 too. Tips very welcome!
+Good reading materials also welcome!
 
-
+----
+----
+----
 
 
 ## pizza.html
 
-So I read somewehre that problems lay in the for loops, and I foud the for loops in the with the ctrl+f "for"
+So I read somewehre that problems lay in the for loops, and I found the for loops in the with the ctrl+f "for"
 
 In changePizzaSizes(size)  function
 
@@ -119,14 +120,20 @@ changed into getElementsByClassName.
 
 changed querySelector for getElementById
 
----time to generate pizzas under one second
+--- time to generate pizzas under one second
 (reread this last sentence a while later and thought that would really be impressive: )
 
 
 : )
 
 ____
-____
 
-GRUNT - then i decided to try to tackle grunt again and so I made another folder, where i used the source code to try a few things. I was a bit succesful and a bit not. Did not manage 'watch' nor 'sass', but managed some 'concat', 'processhtml', 'uglify' and some img stuff. For this submission, I decided to use some img grunt optimisations, and maybe next time more. So I redid the setup in project4 too. Tips very welcome!
-Good reading materials also welcome!
+
+made the amount of pizzas be calculated based on the size of the screen
+tried using request animation
+used translateX instead of style left
+
+also by tip of reviewer I (if I understood correctly) am now not displaying any pizzas that are not visible.
+
+
+
