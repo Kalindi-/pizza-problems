@@ -1,5 +1,5 @@
 
-# How to run the pizza.html appllication
+# How to run the pizza.html application
 
 Click on the pizza.html to open the page.
 Scroll up an down to see the pizzas dance!
@@ -15,7 +15,7 @@ https://github.com/Kalindi-/pizza-problems-source
 Here is what I did for my
 # Project 4
 
-## web optim
+## web optimisations
 
 removed media querry in print css
 added media="print" to print.css line in index.html
