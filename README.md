@@ -136,4 +136,5 @@ used translateX instead of style left
 also by tip of reviewer I (if I understood correctly) am now not displaying any pizzas that are not visible.
 
 
-
+tried around quite a bit, different things, forgot a bit what i did.
+but changed pizza display.

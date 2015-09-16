@@ -360,7 +360,8 @@ var makeRandomPizza = function() {
 
 // returns a DOM element for each pizza
 var pizzaElementGenerator = function(i) {
-  var pizzaContainer,             // contains pizza title, image and list of ingredients
+ var pizzaContainer,             // contains pizza title, image and list of ingredients
+      pizzaDetailsContainer,      // contains pizza information
       pizzaImageContainer,        // contains the pizza image
       pizzaImage,                 // the pizza image itself
       pizzaDescriptionContainer,  // contains the pizza title and list of ingredients
@@ -368,32 +369,33 @@ var pizzaElementGenerator = function(i) {
       ul;                         // the list of ingredients
 
   pizzaContainer  = document.createElement("div");
+  pizzaDetailsContainer  = document.createElement("div");
   pizzaImageContainer = document.createElement("div");
   pizzaImage = document.createElement("img");
   pizzaDescriptionContainer = document.createElement("div");
 
   pizzaContainer.classList.add("randomPizzaContainer");
   pizzaContainer.style.width = "33.33%";
-  pizzaContainer.style.height = "325px";
   pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
-  pizzaImageContainer.classList.add("col-md-6");
-
-  pizzaImage.src = "images/pizza.png";
-  pizzaImage.classList.add("img-responsive");
-  pizzaImageContainer.appendChild(pizzaImage);
-  pizzaContainer.appendChild(pizzaImageContainer);
-
-
-  pizzaDescriptionContainer.classList.add("col-md-6");
 
   pizzaName = document.createElement("h4");
   pizzaName.innerHTML = randomName();
-  pizzaDescriptionContainer.appendChild(pizzaName);
+  pizzaContainer.appendChild(pizzaName);
 
+  pizzaContainer.appendChild(pizzaDetailsContainer);
+
+
+  pizzaImageContainer.classList.add("col-md-6");
+  pizzaImage.src = "images/pizza.png";
+  pizzaImage.classList.add("img-responsive");
+  pizzaImageContainer.appendChild(pizzaImage);
+  pizzaDetailsContainer.appendChild(pizzaImageContainer);
+
+  pizzaDescriptionContainer.classList.add("col-md-6");
   ul = document.createElement("ul");
   ul.innerHTML = makeRandomPizza();
   pizzaDescriptionContainer.appendChild(ul);
-  pizzaContainer.appendChild(pizzaDescriptionContainer);
+  pizzaDetailsContainer.appendChild(pizzaDescriptionContainer);
 
   return pizzaContainer;
 };
@@ -407,27 +409,29 @@ var resizePizzas = function(size) {
   // Gets the new width percent of the pizzas,
   // Makes a list with all pizza elements,
   // Iterates through all pizza elements on the page and changes their widths
+  var newWidth;
   function changePizzaSizes(size) {
      switch(size) {
       case "1":
         document.getElementById("pizzaSize").innerHTML = "Small";
-        newWidth = 25;
+        newWidth = 25 + "%";
         break;
       case "2":
         document.getElementById("pizzaSize").innerHTML = "Medium";
-        newWidth = 33.33;
+        newWidth = 33.33 + "%";
         break;
       case "3":
         document.getElementById("pizzaSize").innerHTML = "Large";
-        newWidth = 50;
+        newWidth = 50 + "%";
         break;
       default:
         console.log("bug in sizeSwitcher");
     }
 
     var allpizzas = document.getElementsByClassName("randomPizzaContainer")
+
     for (var i = 0; i < allpizzas.length; i++) {
-      allpizzas[i].style.width = newWidth + "%";
+      allpizzas[i].style.width = newWidth;
     }
   }
 
@@ -471,9 +475,11 @@ function logAverageFrame(times) {
 
 // Moves the sliding background pizzas based on scroll position
 var items = document.getElementsByClassName('mover');
+
 function updatePositions() {
   window.performance.mark("mark_start_frame");
   frame++;
+
   var scrolled = document.body.scrollTop / 1250;
 
   var phase = [];
@@ -513,8 +519,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
+    elem.style.height = "75px";
+    elem.style.width = "75px";
     elem.basicLeft = (i % cols) * windowWidth / 5 - windowWidth / 2;
     elem.style.top = (Math.floor(i / cols) * height) + 'px';
     movingPizzasDiv.appendChild(elem);

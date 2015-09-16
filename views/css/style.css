@@ -21,7 +21,8 @@ form {
   display: inline-block;
 }
 
-.centered {
+.centered,
+h4 {
   text-align: center;
 }
 
@@ -39,15 +40,18 @@ form {
 
 .randomPizzaContainer {
   float: left;
-  display: flex;
 }
 
 .randomPizzaContainer:after {
   content: "";
   display: table;
-  clear:both;
+  clear: both;
 }
 
  .container {
   background-color: rgba(240, 60, 60, 0.8);
+}
+
+li {
+  margin-left: -30px;
 }
